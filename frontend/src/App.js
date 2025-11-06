@@ -325,6 +325,12 @@ const AppHeader = () => (
   </Header>
 );
 
+const AppFooter = () => (
+  <Footer>
+    © {new Date().getFullYear()} Shorty App. A Minimal URL Shortener.
+  </Footer>
+);
+
 function App() {
   return (
     <AppLayout>
@@ -332,6 +338,7 @@ function App() {
       <MainContent>
 
       </MainContent>
+      <AppFooter />
     </AppLayout>
   )
 }
