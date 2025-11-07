@@ -42,14 +42,14 @@ const server = http.createServer(async (req, res) => {
           const query = await urlsCollection.where('longUrl', '==', longUrl).limit(1).get()
           if (!query.empty) {
             const oldShortCode = query.docs[0].id
-            return sendJson(res, 200, { shortUrl: `${BASE_URL}/${oldShortCode}` })
+            return sendJson(res, 201, { shortUrl: `${BASE_URL}/${oldShortCode}` })
           }
           const newShortCode = nanoid(7)
           await urlsCollection.doc(newShortCode).set({
             longUrl: longUrl,
             createdAt: admin.firestore.FieldValue.serverTimestamp() 
           })
-          return sendJson(res, 200, { shortUrl: `${BASE_URL}/${newShortCode}` })
+          return sendJson(res, 201, { shortUrl: `${BASE_URL}/${newShortCode}` })
         } catch (dbError) {
           sendError(res, 500, 'Internal server error')
         }
