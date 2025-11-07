@@ -67,6 +67,12 @@ const server = http.createServer(async (req, res) => {
       })
       return sendJson(res, 200, history)
 
+    } else if (req.method === 'GET' && req.url.length === 8 && req.url.startsWith('/')) {
+      const shortCode = req.url.substring(1)
+      const doc = await urlsCollection.doc(shortCode).get()
+      if (!doc.exists) return sendError(res, 404, 'URL not found')
+      return sendRedirect(res, doc.data().longUrl)
+
     }
   } catch (error) {
     if (!res.headersSent) {
