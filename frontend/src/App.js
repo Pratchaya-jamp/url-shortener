@@ -336,7 +336,23 @@ function App() {
     <AppLayout>
       <AppHeader />
       <MainContent>
+        <ShortenerWrapper>
+          <Title>
+              <FaLink style={{ verticalAlign: 'middle', marginRight: '10px' }} />
+              URL Shortener
+            </Title>
 
+            <Form>
+              <Input
+                type="text"
+                placeholder="Paste your long URL here (e.g., https://...)"
+              />
+              <Button type="submit">
+                {'Shorten'}
+              </Button>
+            </Form>
+
+        </ShortenerWrapper>
       </MainContent>
       <AppFooter />
     </AppLayout>
